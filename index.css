@@ -10,4 +10,16 @@
 
 ul {
   list-style: none;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+li {
+  display: flex;
+  flex-direction: column;
+}
+p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: xx-small;
+  background-color: whitesmoke;
+  border: solid 1px grey;
 }

@@ -1,15 +1,18 @@
 let form = document.querySelector('#github-form');
 let usersContainer = document.querySelector('#user-list');
 let reposContainer = document.querySelector('#repos-list');
+let searchField = document.getElementById('search');
+let githubContainer = document.getElementById('github-container');
 
 form.addEventListener('submit', (event) => {
+  usersContainer.innerHTML = '';
+  reposContainer.innerHTML = '';
   event.preventDefault();
-  let userInput = event.target.search.value;
+  let userInput = searchField.value;
   fetch(`https://api.github.com/search/users?q=${userInput}`)
     .then((response) => response.json())
     .then((userData) => {
       let user = document.createElement('li');
-      usersContainer.appendChild(user);
 
       let userName = document.createElement('p');
       userName.textContent = userData.items[0].login;
@@ -32,9 +35,10 @@ form.addEventListener('submit', (event) => {
               let repository = document.createElement('p');
               repository.innerText = repo.name;
               reposContainer.appendChild(repository);
-              console.log(repo.name);
             }
           });
       });
+      usersContainer.appendChild(user);
     });
+  form.reset();
 });
